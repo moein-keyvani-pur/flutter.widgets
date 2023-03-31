@@ -74,8 +74,8 @@ class _NodeWidgetState extends State<NodeWidget> {
                   widget.state, widget.iconSize),
             ),
             crossFadeState: _isExpanded && !_isLeaf
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
             duration: const Duration(milliseconds: 500))
       ],
     );
