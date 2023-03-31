@@ -65,12 +65,18 @@ class _NodeWidgetState extends State<NodeWidget> {
             widget.treeNode.content,
           ],
         ),
-        if (_isExpanded && !_isLeaf)
-          Padding(
-            padding: EdgeInsets.only(left: widget.indent!),
-            child: buildNodes(widget.treeNode.children!, widget.indent,
-                widget.state, widget.iconSize),
-          )
+        // if (_isExpanded && !_isLeaf)
+        AnimatedCrossFade(
+            firstChild: const SizedBox(),
+            secondChild: Padding(
+              padding: EdgeInsets.only(left: widget.indent!),
+              child: buildNodes(widget.treeNode.children!, widget.indent,
+                  widget.state, widget.iconSize),
+            ),
+            crossFadeState: _isExpanded && !_isLeaf
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+            duration: const Duration(milliseconds: 500))
       ],
     );
   }
